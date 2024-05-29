@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ventus Result Bridge</title>
+</head>
+
+<body>
+    <h2>Processing...</h2>
+    <script>
+        var targetWindow = window.opener || window.parent;
+        if (targetWindow) {
+            var urlParams = new URLSearchParams(window.location.search);
+            var data = {};
+
+            for (var pair of urlParams.entries()) {
+                data[pair[0]] = pair[1];
+            }
+            targetWindow.postMessage(JSON.stringify({ 'event': "got-eway-result", 'data': data }), window.location.origin);
+            // targetWindow.postMessage(JSON.stringify({ 'event': "got-eway-result", 'data': data }), window.location.origin + "/ventus-chekcout.html");
+            // targetWindow.postMessage(JSON.stringify({ 'event': "got-eway-result", 'data': data }), "*");
+        }
+    </script>
+</body>
+
+</html>
